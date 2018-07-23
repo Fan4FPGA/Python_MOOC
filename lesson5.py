@@ -1,6 +1,3 @@
-#函数复用
-
-'''
 import turtle
 import time
 def drawgap():
@@ -26,6 +23,11 @@ def drawdigit(digit):
     turtle.left(180)
     turtle.penup()
     turtle.fd(20)
+'''
+def drawdate(date):
+    for i in date:
+        drawdigit(eval(i))
+'''
 
 def drawdate(date):#data为日期，格式为：'%Y-%m=%d+'
     turtle.pencolor("red")
@@ -54,61 +56,3 @@ def main():
     turtle.done()
 
 main()
-'''
-
-
-#函数递归
-'''
-def fact(n):
-    if n == 0:
-	    return 1;
-    else:
-	    return n*fact(n-1)
-print(fact(5))
-'''
-'''
-def rvs(s):
-    if s == "":
-	    return s
-    else:
-	    return rvs(s[1:]) + s[0]
-print(rvs('123456789'))
-'''
-'''
-def feibo(n):
-    if n == 1 or n == 2:
-	    return 1;
-    else:
-	    return feibo(n - 1) + feibo(n - 2)
-for n in range (1,13):
-    print(feibo(n))
-'''
-
-count = 0
-def hanoi(n, src, dst, mid):
-    global count
-    if n == 1:
-        print("{}:{}-->{}".format(1,src,dst))
-        count += 1
-    else:
-        hanoi(n-1,src,mid,dst)
-        print("{}:{}-->{}".format(n,src,dst))
-        count += 1
-        hanoi(n-1,mid,dst,src)
-
-hanoi(3,"A","B","C")
-
-
-"sdfdsfdsf"
-
-
-
-
-
-
-
-
-
-
-
-

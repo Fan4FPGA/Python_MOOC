@@ -243,10 +243,10 @@ print("平均值:{},方差:{:.2},中位数:{}.".format(m, d, me))
 可以通过[]
 
 '''
-
+'''
 d = {"CN":"BJ", "USA":"PD", "FR":"PR"}
 print(d["CN"])
-
+'''
 '''
 生成一个空的字典
 de = {}
@@ -287,20 +287,76 @@ jieba.add_word(w) 向分词词典添加新词
 '''
 import  jieba as  J
 s = "中华人民共和国是一个伟大的国家"
-print(J.lcut(s))
-print(J.lcut(s, cut_all = True))
-print(print(J.lcut_for_search(s)))
+words = J.lcut(s)
+for word in words:
+    print(word)
+#print(J.lcut(s, cut_all = True))
+#print(J.lcut_for_search(s))
 '''
 
 
-
 #实例10文本词频统计问题
+'''
+def gettxt():
+    txt = open("hamlet.txt","r").read()
+    txt = txt.lower()
+    for ch in '!"#$%^&*()_+,./:;<=>?@[\\]{}|.':
+        txt = txt.replace(ch," ")
+    return txt
 
+hamletTxt = gettxt()
+words = hamletTxt.split()
+counts = {}
+for word in words:
+    counts[word] = counts.get(word,0) + 1
+items = list(counts.items())
+items.sort(key=lambda x:x[1], reverse=True)
+print("The Top 10 words in the hamlet:")
+for i in range(10):
+    print(items[i][0],items[i][1])
+'''
 
-
-
-
-
+'''
+import jieba
+txt = open("threekingdoms.txt","r", encoding="utf-8").read()
+words = jieba.lcut(txt)
+counts = {}
+for word in words:
+    if len(word) == 1:
+        continue
+    else:
+        counts[word] = counts.get(word,0) + 1
+items = list(counts.items())
+items.sort(key=lambda x:x[1], reverse=True)
+for i in range(15):
+    print(items[i][0], items[i][1])
+'''
+import jieba
+excludes = {"将军","却说","荆州","二人","不可","不能","如此"}
+txt = open("threekingdoms.txt", "r", encoding='utf-8').read()
+words  = jieba.lcut(txt)
+counts = {}
+for word in words:
+    if len(word) == 1:
+        continue
+    elif word == "诸葛亮" or word == "孔明曰":
+        rword = "孔明"
+    elif word == "关公" or word == "云长":
+        rword = "关羽"
+    elif word == "玄德" or word == "玄德曰":
+        rword = "刘备"
+    elif word == "孟德" or word == "丞相":
+        rword = "曹操"
+    else:
+        rword = word
+    counts[rword] = counts.get(rword,0) + 1
+for word in excludes:
+    del counts[word]
+items = list(counts.items())
+items.sort(key=lambda x:x[1], reverse=True)
+for i in range(10):
+    word, count = items[i]
+    print ("{0:<10}{1:>5}".format(word, count))
 
 
 
