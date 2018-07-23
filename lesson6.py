@@ -132,3 +132,182 @@ ls.reverse()
 print(ls)
 '''
 
+
+#n阶汉诺塔
+'''
+count = 0
+def hanoi(n, src, dst, mid):
+    global count
+    if n == 1:
+        print("{}:{}-->{}".format(1,src,dst))
+        count += 1
+    else:
+        hanoi(n-1,src,mid,dst)
+        print("{}:{}-->{}".format(n,src,dst))
+        count += 1
+        hanoi(n-1,mid,dst,src)
+hanoi(2,'src','dst','mid')
+'''
+
+
+#基本统计值问题
+'''
+总个数 len()
+求和: for ... in 
+平均值：求和/总个数
+方差：各个数据与平均数差的平方的二和的平均数
+中位数 ，排序，奇数 中间位置，偶数中间两个除2
+
+'''
+
+'''
+# -*- coding:utf-8 -*-
+def getnum():           #获取用户不定长度的输入
+    nums = []           #定义一个列表
+    iNumStr = input("请输入数据（回车退出）:")
+    while iNumStr != "":
+        nums.append(eval(iNumStr))
+        iNumStr = input("请输入数据（回车退出）:")
+    return nums
+
+def mean(numbers):
+    s = 0.0
+    for num in numbers:
+        s = s + num
+    return s / len(numbers)
+
+def dev(numbers, mean):
+    sdev = 0.0
+    for num in numbers:
+        sdev = sdev + (num - mean)**2
+        temp = sdev / (len(numbers )-1)
+    return pow(temp, 0.5)
+#sorted 函数可对列表进行排序操作
+def median(numbers):
+    sorted(numbers)
+    size = len(numbers)
+    if size % 2 == 0:
+        med = (numbers[size//2-1] + numbers[size//2])/2
+    else:
+        med = numbers[size//2]
+    return  med
+#整数除法//
+
+
+n = getnum()
+m = mean(n)
+d = dev(n,m)
+me = median(n)
+
+print("平均值:{},方差:{:.2},中位数:{}.".format(m, d, me))
+'''
+
+'''
+上述代码主要训练
+-获取多个数据，从控制台获取多个不确定数据的方法，使用while语句
+-分隔多个函数，模块化的设计放大
+-充分利用函数：充分利用python提供的内容函数,比如sorted（），len（），pow（）
+'''
+
+
+
+
+#
+#字典类型及操作
+#
+
+'''
+映射 
+是一种键（索引）和值（数据）的对应关系
+
+内部颜色 ： 红色
+外部颜色 ： 蓝色
+
+列表 0 ~ n 默认的索引
+
+字典 用户自定义
+字典是映射的而体现
+字典是键 值 队的集合
+
+使用{} 或dict 创建，键值对用；表示
+
+{<键1>:<值1>， <键2>:<值2>， ... ，<键n>:<值n>;}
+在字典变量中,通过键获得值
+<字典变量> = {<键1>:<值1>; <键2>:<值2>; ... ;<键n>:<值n>;}
+值 = 字典变量[键]
+字典变量[键] = 值
+
+
+
+
+可以通过[]
+
+'''
+
+d = {"CN":"BJ", "USA":"PD", "FR":"PR"}
+print(d["CN"])
+
+'''
+生成一个空的字典
+de = {}
+type(de)  #type(x) 返回x的数据类型
+<class "dict">
+'''
+
+'''
+字典的函数和方法
+del d[k] 删除字典d中键k的数据值
+k in d 判断键k是否咋字典d中
+d.keys() 返回字典d中多余键的信息
+d.values() 返回字典d中所有值的信息
+d.items() 返回字典d所有键值对的信息
+返回的不是列表
+d.get(k,<default>) 键值k存在，返回对应的值，不存在则返回default的值
+d.pop(k,<default>) 键值k存在，取出对应的键值对，不存在则返回default的值
+d.popitem() 随机从字典取出一个键值对，以元组的形式返回
+d.clear() 删除所有键值对
+d.len(d) 返回字典d元素的个数
+'''
+
+#应用场景
+
+#jiba库的使用
+#中文分词第三方库
+#精确模式，全模式，搜索引擎模
+
+
+'''
+jieba.lcut(s)  返回一个列表类型的分词结果，精确模式
+jieba.lcut(s，cut_all = True) 全模式，存在冗余
+jieba.lcut_for_search(s) 搜索引擎模式，存在冗余
+jieba.add_word(w) 向分词词典添加新词
+
+'''
+
+'''
+import  jieba as  J
+s = "中华人民共和国是一个伟大的国家"
+print(J.lcut(s))
+print(J.lcut(s, cut_all = True))
+print(print(J.lcut_for_search(s)))
+'''
+
+
+
+#实例10文本词频统计问题
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
